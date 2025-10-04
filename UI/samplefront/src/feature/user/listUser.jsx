@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import userService from "../../services/userService";
 
 const UserList = () => {
     const navigation = useNavigate();
@@ -22,9 +23,8 @@ const UserList = () => {
         });
     }
 
-    const _handleFilter = async() => {
-        var response = 
-        await fetch(`https://localhost:7131/api/Users/GetAllUsersByFilter?name=${search.name}&phoneNumber=${search.phoneNumber}&address=${search.address}&fromAge=${search.fromAge}&toAge=${search.toAge}&fromCreateDate=${search.fromCreateDate}&toCreateDate=${search.toCreateDate}`)
+    const _handleFilter = async () => {
+        var response = await userService.getAllByFilter(search);
         if(response.ok) {
             const data = await response.json();
             setUsers(data.model);
@@ -35,7 +35,7 @@ const UserList = () => {
     }
 
     const _handleFetchUsers = async () => {
-        var response = await fetch('https://localhost:7131/api/Users/GetAllUsers/');
+        var response = await userService.getAll(); 
         if (response.ok) {
             const data = await response.json();
             console.log(data);

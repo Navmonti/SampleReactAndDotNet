@@ -1,6 +1,6 @@
 import react, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-
+import { useParams, useNavigate } from 'react-router-dom'; 
+import userService from '../../services/userService';
 
 const AddUser = () => {
     const navigate = useNavigate();
@@ -21,15 +21,8 @@ const AddUser = () => {
     }
 
     const _handleSubmit = async () => {
-        var response = await fetch('https://localhost:7131/api/Users/AddUser', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-        debugger
-        if (response.ok) {
+        const res = await userService.add(data);
+        if (res.ok) {
             console.log('User added successfully');
             navigate('/')
         } else {

@@ -25,7 +25,6 @@
     <Folder Include="UI\samplefront\src\components\" />
     <Folder Include="UI\samplefront\src\feature\" />
     <Folder Include="UI\samplefront\src\layouts\" />
-    <Folder Include="UI\samplefront\src\services\" />
     <Folder Include="UI\samplefront\src\pages\" />
   </ItemGroup>
 
